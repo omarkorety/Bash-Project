@@ -1,6 +1,6 @@
 #1/bin/bash
 #Connect To Database
-
+function connect {
 read -p "Enter the database name you want to connect to" name
 
 while true
@@ -25,4 +25,4 @@ do
 		read -p "This database is not available, please try again: " name
 	fi
 done
-
+}
