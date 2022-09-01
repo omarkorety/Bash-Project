@@ -1,7 +1,7 @@
 #1/bin/bash
 #Drop Database
 
-path=pwd
+path= pwd
 read -p "What is the name of the database do you want to drop? " name
 
 while true
