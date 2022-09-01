@@ -15,7 +15,7 @@ do
 			case $ans in
 				[yY]) rm -r $name 
 					break 2;;
-				[nN]) source $path/Main_Menu.sh ;; #Return to main menu
+				[nN]) break 2 ;; #Return to main menu
 				*) read -p "Please enter a suitable answer(y/n) " ans
 					#return to the case again
 			esac
@@ -24,5 +24,7 @@ do
 		read -p "This database is not available, Please try again " name
 	fi
 done
+
+source $path/Main_Menu.sh
 
 
