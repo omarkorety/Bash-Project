@@ -1,6 +1,6 @@
 #1/bin/bash
 #Drop Database
-
+function drop { 
 path= pwd
 read -p "What is the name of the database do you want to drop? " name
 
@@ -24,7 +24,7 @@ do
 		read -p "This database is not available, Please try again " name
 	fi
 done
-
+}
 source $path/Main_Menu.sh
 
 

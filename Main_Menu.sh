@@ -1,16 +1,14 @@
 #!/bin/bash
 . ./create.sh
-echo "       Welcome To Our DBMS"
-echo "----------Main_menu----------"
-echo "       1)Create Database"
-echo "       2)List Database"
-echo "       3)Connect To Database"
-echo "       4)Drop Database"
-read choice
-case $choice in
-1)create;;		#Create
+. ./drop.sh
+select choice in " Create Database\n" "List Database\n" "Connect To Database\n" "Drop Database\n" "Exit"
+do
+case $REPLY in
+1) create;;		#Create
 2);;		#List
 3);;		#Connect
-4);;		#Drop
-*)
+4) drop;;		#Drop
+5) exit ;;
+*) echo "Invalid entry"
 esac
+done
