@@ -7,6 +7,7 @@ read -p "Enter the database name you want to connect to " name
 while true
 do
 
+
 	if [ -d $name ]
 	then
 		cd $name
