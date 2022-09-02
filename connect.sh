@@ -8,7 +8,7 @@ while true
 do
 
 
-	if [ -d $name ]
+	if [ -d ./DBMS/$name ]
 	then
 		cd ./DBMS/$name
 		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table"	#Creating the menu
