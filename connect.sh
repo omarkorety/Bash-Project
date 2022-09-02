@@ -15,7 +15,7 @@ do
 		do
 			case $REPLY in
 				1) ctable;;			#Create
-				2);;			#List
+				2) ls -I "*-meta";;			#List
 				3);;			#Drop
 				4);;			#Insert
 				5);;			#Select
