@@ -2,6 +2,7 @@
 #I am ctable
 function ctable {
 	val=()
+	meta=()
 
 	while true
 	do
@@ -46,7 +47,7 @@ function ctable {
 				then
 					read -p "Please enter either i or s " typ
 				else
-					echo $i\) $nm type is $typ >> "${name}-meta"
+
 					break
 				fi
 			done
@@ -58,10 +59,10 @@ function ctable {
 					read -p "Please enter either y or n " ans
 				elif [[ $ans = [yY] ]]
 				then
-					echo $i\) $nm is a primary key >> "${name}-meta"
+					meta+="$i:${nm}:$typ:primary\n"
 					break
 				else
-			
+					meta+="$i:${nm}:$typ\n"
 					break
 				fi
 				
@@ -70,5 +71,6 @@ function ctable {
 		done
 	done
 	echo $val >> $name
+	echo -e $meta >> "${name}-meta"
 	echo A table with the name $name is created successfully!
 }
