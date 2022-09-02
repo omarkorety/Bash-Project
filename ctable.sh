@@ -12,7 +12,7 @@ function ctable {
                                 echo "Can't create a table with that name"
 			else
 				break
-	fi
+ 		fi
 	done
 	while true
 	do
@@ -28,6 +28,7 @@ function ctable {
 		while true
 		do
 			read -p "Name of column number $i " nm
+
 			if [[ $nm =~ [\&@!#$%^/.:\|\-] ]] || [[ $nm = "" ]]
 			then
 				echo "Can't create a table with that name"
@@ -73,4 +74,7 @@ function ctable {
 	echo $val >> $name
 	echo -e $meta >> "${name}-meta"
 	echo A table with the name $name is created successfully!
+
+
 }
+

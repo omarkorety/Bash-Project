@@ -1,0 +1,6 @@
+1) 1 type is i
+1) 1 is a primary key
+2) name type is s
+3) subjects type is s
+4) gpa type is s
+5) address type is s
