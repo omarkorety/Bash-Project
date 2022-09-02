@@ -6,7 +6,7 @@ select choice in " Create Database" "List Database" "Connect To Database" "Drop 
 do
 case $REPLY in
 1) create;;		#Create
-2);;		#List
+2) ls -l ./DBMS/;;		#List
 3) connect;;		#Connect
 4) drop;;		#Drop
 5) exit ;;

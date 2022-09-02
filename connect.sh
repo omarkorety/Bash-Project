@@ -4,7 +4,8 @@ function connect {
 read -p "Enter the database name you want to connect to" name
 
 while true
-do
+do	
+
 	if [ -d $name ]
 	then
 		cd $name

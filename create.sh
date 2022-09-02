@@ -11,9 +11,10 @@ then
 elif [[ $dbname = "" ]]
 then
 	echo "Please enter a correct name"
-elif [[ ! -d $dbname ]] #if no directory wth that name
+elif [[ ! -d ./DBMS/$dbname ]] #if no directory wth that name
 then
-	mkdir ./$dbname
+	mkdir -p ./DBMS/$dbname
+	echo -e "successfully created \n please Press Enter To Back To Main Menu"
 	break
 else
 	echo "Database Exist"
