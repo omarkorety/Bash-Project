@@ -2,6 +2,7 @@
 #Connect To Database
 function connect {
 . ./ctable.sh
+. ./ins.sh
 read -p "Enter the database name you want to connect to " name
 
 while true
@@ -17,7 +18,7 @@ do
 				1) ctable;;			#Create
 				2);;			#List
 				3);;			#Drop
-				4);;			#Insert
+				4) insert;;			#Insert
 				5);;			#Select
 				6);;			#Delete
 				7);;			#Update
