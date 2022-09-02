@@ -10,7 +10,7 @@ do
 
 	if [ -d $name ]
 	then
-		cd $name
+		cd ./DBMS/$name
 		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table"	#Creating the menu
 		do
 			case $REPLY in
