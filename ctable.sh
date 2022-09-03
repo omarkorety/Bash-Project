@@ -60,10 +60,20 @@ function ctable {
 					read -p "Please enter either y or n " ans
 				elif [[ $ans = [yY] ]]
 				then
-					meta+="$i:${nm}:$typ:primary\n"
+					if [[ $i -eq $col ]]
+					then
+					meta+="$i:${nm}:$typ:primary"
+					else
+					meta+="$i:${nm}:$typ:primary\n"	
+					fi
 					break
 				else
+					if [[ $i -eq $col ]]
+					then
+					meta+="$i:${nm}:$typ"
+					else
 					meta+="$i:${nm}:$typ\n"
+					fi
 					break
 				fi
 				
@@ -74,6 +84,7 @@ function ctable {
 	echo $val >> $name
 	echo -e $meta >> "${name}-meta"
 	echo A table with the name $name is created successfully!
+	echo Please press enter to continue..
 
 
 }

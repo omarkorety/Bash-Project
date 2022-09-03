@@ -12,7 +12,7 @@ do
 
 	if [ -d "$name" ]
 	then
-		cd $name
+		cd ./$name
 		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table"	#Creating the menu
 		do
 			case $REPLY in
@@ -30,4 +30,5 @@ do
 		read -p "This database is not available, please try again: " name
 	fi
 done
+cd ../..
 }

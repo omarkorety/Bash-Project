@@ -2,7 +2,7 @@
 . ./create.sh
 . ./drop.sh
 . ./connect.sh
-select choice in " Create Database" "List Database" "Connect To Database" "Drop Database" "Exit"
+select choice in "Create Database" "List Database" "Connect To Database" "Drop Database" "Exit"
 do
 case $REPLY in
 1) create;;		#Create

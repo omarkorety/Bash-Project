@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 #UPDATE
 
 function update {
@@ -26,7 +26,20 @@ function update {
 					echo "Too large number of rows!"
 				else
 					read -p "Enter your update: " upd
-					break 2
+					x=`awk -F: '{print $3}' "${name}-meta" | sed -n ${colu}p`
+					echo $x
+					if [[ $x = [iI] ]]
+					then
+						if [[ ! $upd =~ ^[0-9]+$ ]] ;then
+							echo "Value must be an integer!"
+						else
+							
+							y=`awk -F: -v k="$colu" '{print $k}' ${name} | sed -n ${row}p`
+							awk -F: -v k="$colu": '{print $k}' ${name} | sed -i "${row}s/$y/$upd/" ${name}
+						fi
+					fi
+
+
 				fi
 				done
 			fi
