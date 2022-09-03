@@ -12,10 +12,10 @@ else
 	echo "PRIMARY KEY MUST BE UNIQUE"
 	for i in $(seq $cols)
 	do
-		echo "table colums are ="$(awk -F: '{print $0}' test | head -1)
-		ield=$(awk -F: '{print $i}' $tname | cut -d: -f $i)
-		echo "enter" $i
-		read -p "enter colom" input
+		echo "table colums are ="$(awk -F: '{print $0}' $tname | head -1)
+		field=$(awk -F: '{print $0}' $tname | head -1 |cut -d: -f $i)
+
+		read -p "enter colom $field" input
 		if [[ $i -eq $cols ]]
 		then
 			row+=${input}

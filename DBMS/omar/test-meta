@@ -4,3 +4,7 @@
 3) subjects type is s
 4) gpa type is s
 5) address type is s
+1:id:i:primary
+2:name:s
+3:sub:s
+
