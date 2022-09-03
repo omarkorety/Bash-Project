@@ -1,17 +1,18 @@
 #1/bin/bash
 #Connect To Database
 function connect {
+. ./update.sh
 . ./ctable.sh
 . ./ins.sh
 read -p "Enter the database name you want to connect to " name
-
+cd ./DBMS
 while true
 do
 
 
-	if [ -d ./DBMS/$name ]
+	if [ -d "$name" ]
 	then
-		cd ./DBMS/$name
+		cd $name
 		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table"	#Creating the menu
 		do
 			case $REPLY in
@@ -21,7 +22,7 @@ do
 				4) insert;;			#Insert
 				5);;			#Select
 				6);;			#Delete
-				7);;			#Update
+				7) update;;			#Update
 			esac
 			break 2
 		done
