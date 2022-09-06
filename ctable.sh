@@ -1,18 +1,22 @@
-#1/bin/bash
+#!/bin/bash
 #I am ctable
 function ctable {
 	val=()
 	meta=()
+	typeset -i nos=0
 
 	while true
 	do
 	read -p "Enter the table name: " name
-	if [[ $name =~ [\&@!#$%^/.:\|\-] ]] || [[ $name = "" ]]
-                        then
-                                echo "Can't create a table with that name"
-			else
-				break
- 		fi
+	if [[ ! $name =~ ^[a-zA-Z]+$ ]] 
+    then
+        echo "Can't create a table with that name"
+	elif [[ -f ./$name ]]
+	then
+		echo "Table name already exists."
+	else
+		break
+ 	fi
 	done
 	while true
 	do
@@ -29,7 +33,7 @@ function ctable {
 		do
 			read -p "Name of column number $i " nm
 
-			if [[ $nm =~ [\&@!#$%^/.:\|\-] ]] || [[ $nm = "" ]]
+			if [[ ! $nm =~ ^[a-zA-Z]+$ ]]
 			then
 				echo "Can't create a table with that name"
 				continue
@@ -52,32 +56,34 @@ function ctable {
 					break
 				fi
 			done
-			read -p "Primary key? (y/n) " ans
-			while true
-			do
-				if [[ $ans != [yYnN] ]]
-				then
-					read -p "Please enter either y or n " ans
-				elif [[ $ans = [yY] ]]
-				then
-					if [[ $i -eq $col ]]
+			if [[ $nos -eq 0 ]]
+			then
+				read -p "Primary key? (y/n) " ans
+				while true
+				do
+					if [[ $ans != [yYnN] ]]
 					then
-					meta+="$i:${nm}:$typ:primary"
-					else
-					meta+="$i:${nm}:$typ:primary\n"	
+						read -p "Please enter either y or n " ans
+					elif [[ $ans = [yY] ]]
+					then
+						if [[ $i -eq $col ]]
+						then
+						meta+="$i:${nm}:$typ:primary"
+						else
+						meta+="$i:${nm}:$typ:primary\n"	
+						fi
+						nos+=1
+						break
 					fi
-					break
+				done
+			else
+				if [[ $i -eq $col ]]
+				then
+				meta+="$i:${nm}:$typ"
 				else
-					if [[ $i -eq $col ]]
-					then
-					meta+="$i:${nm}:$typ"
-					else
-					meta+="$i:${nm}:$typ\n"
-					fi
-					break
+				meta+="$i:${nm}:$typ\n"
 				fi
-				
-			done
+			fi
 			break
 		done
 	done

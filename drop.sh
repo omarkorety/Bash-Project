@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 #Drop Database
 function drop { 
 
@@ -27,6 +27,8 @@ do
 		read -p "This database is not available, Please try again " name
 	fi
 done
+
+echo Please press Enter to continue.
 }
 
 

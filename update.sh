@@ -45,7 +45,7 @@ function update {
 			fi
 			done
 		else
-			echo "This table name doesn't exits"
+			echo "This table name doesn't exist!"
 			continue
 		fi
 	done
