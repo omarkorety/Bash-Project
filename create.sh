@@ -4,7 +4,7 @@ while true
 do
 echo "Enter Database Name:"
 read dbname
-if [[ ! $name =~ ^[a-zA-Z]+$ ]] 
+if [[ ! $dbname =~ ^[a-zA-Z]+$ ]] 
 then
 	echo "Cant Create Database With That Name"
 	
