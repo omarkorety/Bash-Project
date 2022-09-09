@@ -16,13 +16,13 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	echo  "Insert in ($colname) which its datatype is $coltyp" 
 	read input
 	if [[ $coltyp == "i" ]];then 
-		while ! [[  $input =~ ^[0-9]+$ ]]; do
+		while ! [[  $input =~ ^[0-9]*$ ]]; do
 			echo "Invalid DataType "
 			echo -e "Please enter an integer ($colname) "
  			read input
 		done
 	elif [[ $coltyp == "s" ]];then
-		while ! [[ $input =~ ^[0-9]+$ ]]; do
+		while ! [[ $input =~ ^[0-9]*$ ]]; do
 			echo "Invalid DataType"
 			echo -e "Please enter a string ($colname) "
 			read input
