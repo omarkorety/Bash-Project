@@ -4,8 +4,11 @@ function connect {
 . ./update.sh
 . ./ctable.sh
 . ./ins.sh
+. ./deltable.sh
 . ./select.sh
-read -p "Enter the database name you want to connect to " name
+ls ./DBMS/
+read -p "Enter the database name you want to connect to: " name
+
 cd ./DBMS
 while true
 do
@@ -22,7 +25,7 @@ do
 				3);;			#Drop
 				4) insert;;			#Insert
 				5) selct;;			#Select
-				6);;			#Delete
+				6) deltable;;			#Delete
 				7) update;;			#Update
 			esac
 			break 2

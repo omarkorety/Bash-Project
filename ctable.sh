@@ -74,6 +74,14 @@ function ctable {
 						fi
 						nos+=1
 						break
+					else
+						if [[ $i -eq $col ]] 
+						then
+							meta+="$i:${nm}:$typ"
+						else
+							meta+="$i:${nm}:$typ\n"
+						fi
+						break
 					fi
 				done
 			else
@@ -83,6 +91,7 @@ function ctable {
 				else
 				meta+="$i:${nm}:$typ\n"
 				fi
+			
 			fi
 			break
 		done
