@@ -1,10 +1,10 @@
 #!/bin/bash
-function insert {
+
+
 read -p "enter table name " tname
 if [ ! -f $tname ]
     then
 		echo " dosen't exist"
-		insert
 fi
 colnum=$(awk 'END{print NR}' test-meta)
 #arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' $tname))					
@@ -38,18 +38,4 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	fi
 	#done
 
-	if [[ $k -eq $colnum ]]
-	then
-			row+=${input}
-	else
-			row+=${input}:
-	fi
-
 done
-		echo $row
-
-echo $row >> $tname
-			
-}
-
-			
