@@ -1,32 +1,58 @@
 #!/bin/bash
-. ./ctable.sh
 function insert {
-echo -e "enter nome of the table:"
-read tname
-cols=$(awk -F: '{print NF}' $tname | head -1)
-if [ ! -f ./$tname ]
-then
-	echo "please enter name of the table right:" 
-else
-	echo "Number of colums is $cols "
-	echo "PRIMARY KEY MUST BE UNIQUE"
-	for i in $(seq $cols)
-	do
-		echo "table colums are ="$(awk -F: '{print $0}' $tname | head -1)
-		field=$(awk -F: '{print $0}' $tname | head -1 |cut -d: -f $i)
-
-		read -p "enter colom $field" input
-		if [[ $i -eq $cols ]]
-		then
-			row+=${input}
-		else
-			row+=${input}:
-		fi
-		echo $row
-	done
-
+read -p "enter table name " tname
+if [ ! -f $tname ]
+    then
+		echo " dosen't exist"
+		insert
 fi
+colnum=$(awk 'END{print NR}' "${tname}-meta")
+#arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' $tname))					
+for (( k = 1; k <=$colnum ; k++ )); do
+	coltyp=$(awk -F: -v i="$k" '{if(NR==i) print $3}' "${tname}-meta")
+	colkey=$(awk -F: -v i="$k" '{if(NR==i) print $4}' "${tname}-meta") #to know if it primary or not
+	colname=$(awk -F: -v i="$k" '{if(NR==i) print $2}' "${tname}-meta")
+	#while true ;do
+	echo  "enter ($colname)) is $coltyp" 
+	read input
+	if [[ $coltyp == "i" ]];then 
+		while ! [[  $input =~ ^[0-9]*$ ]]; do
+			echo "invalid DataType "
+			echo -e "enter ($colname) "
+ 			read input
+		done
+	fi
+	if [[ $colkey == "primary" ]]; then
+		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' $tname))
+		#while [[ true ]];do			
+			for item in "${primcol[@]}" ; do
+				if [[ $input == "$item" ]];then
+					echo "this primary key found"
+				else
+					break ;
+				fi
+				echo -e "enter ($colname)"
+			 	read input
+
+			done
+		#done
+	fi
+#	echo -e "enter ($colname) "
+# 	read input
+	#done
+
+	if [[ $k -eq $colnum ]]
+	then
+			row+=${input}
+	else
+			row+=${input}:
+	fi
+
+done
+		echo $row
+
 echo $row >> $tname
+			
 }
 
 			

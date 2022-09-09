@@ -1,29 +1,20 @@
 #!/bin/bash
-declare -a arr
-cols=$(awk -F: '{print NF}' test | head -1)
-for ((i=1;i<=cols;i++))
-do
-arr+=($(awk -F: '{print $0}' test |head -1 |cut -d: -f$i))
-done
-len_array=${#arr[@]}
-select choice in "all" "spicefic coulm"
-do
-if [ "$choice" == "all" ]
-then 
-cat test
-elif [ "$choice" == "spicefic coulm" ]
-then
-echo "Those couloms that can display in this table"
-awk -F: '{print $0}' test |head -1
-read -p "enter the coulmn u need: " col
-for i in "${arr[@]}"
-do
-   	if [ "$i" == "$col" ] ; then
- 		echo "Found"
-		if
-    	fi
-done
-fi
-done
+primcol=($(awk -F:  '{ if (NR > 1) print $1}' test))
+echo ${primcol[@]}
+echo $primcol
 
-#echo ${arr[2]}
+read -p "enter " input
+
+		for item in "${primcol[@]}"; do
+			echo $item
+			if [[ $item -eq $input ]];then
+					echo "found"
+					break;
+				else
+					echo "not found"
+					continue;
+			fi
+			
+				
+				
+		done
