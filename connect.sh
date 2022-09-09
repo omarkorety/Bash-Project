@@ -20,7 +20,8 @@ do
 				1) ctable;;			#Create
 				2) ls -I "*-meta";;			#List
 				3);;			#Drop
-				4) insert;;			#Insert
+				4) insert
+					continue;;			#Insert
 				5) selct;;			#Select
 				6);;			#Delete
 				7) update;;			#Update
