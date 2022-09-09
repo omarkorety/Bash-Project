@@ -6,12 +6,12 @@ if [ ! -f $tname ]
 		echo " dosen't exist"
 		insert
 fi
-colnum=$(awk 'END{print NR}' test-meta)
+colnum=$(awk 'END{print NR}' "${tname}-meta")
 #arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' $tname))					
 for (( k = 1; k <=$colnum ; k++ )); do
-	coltyp=$(awk -F: -v i="$k" '{if(NR==i) print $3}' test-meta)
-	colkey=$(awk -F: -v i="$k" '{if(NR==i) print $4}' test-meta) #to know if it primary or not
-	colname=$(awk -F: -v i="$k" '{if(NR==i) print $2}' test-meta)
+	coltyp=$(awk -F: -v i="$k" '{if(NR==i) print $3}' "${tname}-meta")
+	colkey=$(awk -F: -v i="$k" '{if(NR==i) print $4}' "${tname}-meta") #to know if it primary or not
+	colname=$(awk -F: -v i="$k" '{if(NR==i) print $2}' "${tname}-meta")
 	#while true ;do
 	echo  "enter ($colname)) is $coltyp" 
 	read input
@@ -23,11 +23,10 @@ for (( k = 1; k <=$colnum ; k++ )); do
 		done
 	fi
 	if [[ $colkey == "primary" ]]; then
-		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' test))
+		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' $tname))
 		while [[ true ]];do
 			if [[ $input =~ $primcol ]];then
 				echo "primary cant repeated"
-				#continue 2;
 			else
 				break;
 			fi
