@@ -11,10 +11,10 @@ then
 elif [[ ! -d ./DBMS/$dbname ]] #if no directory wth that name
 then
 	mkdir -p ./DBMS/$dbname
-	echo -e "successfully created \n please Press Enter To Back To Main Menu"
+	echo -e "successfully created \n please press Enter to get back to the Main Menu"
 	break
 else
-	echo "Database Exist"
+	echo "This database already exists."
 	
 fi
 done

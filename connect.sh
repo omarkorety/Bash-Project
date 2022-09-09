@@ -5,7 +5,8 @@ function connect {
 . ./ctable.sh
 . ./ins.sh
 . ./deltable.sh
-read -p "Enter the database name you want to connect to " name
+ls ./DBMS/
+read -p "Enter the database name you want to connect to: " name
 cd ./DBMS
 while true
 do

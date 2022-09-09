@@ -2,12 +2,13 @@
 #Drop Database
 function drop { 
 
-path= pwd
+#path= pwd
+ls ./DBMS/
 read -p "What is the name of the database do you want to drop? " name
-
+cd ./DBMS
 while true
 do
-	if [ -d ./DBMS/$name ]
+	if [ -d "$name" ]
 
 	then
 		
@@ -27,7 +28,7 @@ do
 		read -p "This database is not available, Please try again: " name
 	fi
 done
-
+cd ..
 echo Please press Enter to continue.
 }
 
