@@ -5,8 +5,10 @@ function connect {
 . ./ctable.sh
 . ./ins.sh
 . ./deltable.sh
+. ./select.sh
 ls ./DBMS/
 read -p "Enter the database name you want to connect to: " name
+
 cd ./DBMS
 while true
 do
@@ -22,7 +24,7 @@ do
 				2) ls -I "*-meta";;			#List
 				3);;			#Drop
 				4) insert;;			#Insert
-				5);;			#Select
+				5) selct;;			#Select
 				6) deltable;;			#Delete
 				7) update;;			#Update
 			esac
