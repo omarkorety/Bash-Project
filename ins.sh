@@ -24,17 +24,21 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	fi
 	if [[ $colkey == "primary" ]]; then
 		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' $tname))
-		while [[ true ]];do
-			if [[ $input =~ $primcol ]];then
-				echo "primary cant repeated"
-			else
-				break;
-			fi
-				echo -e "enter $colname"
-				read input
+		#while [[ true ]];do			
+			for item in "${primcol[@]}" ; do
+				if [[ $input == "$item" ]];then
+					echo "this primary key found"
+				else
+					break ;
+				fi
+				echo -e "enter ($colname)"
+			 	read input
 
-		done	
+			done
+		#done
 	fi
+#	echo -e "enter ($colname) "
+# 	read input
 	#done
 
 	if [[ $k -eq $colnum ]]
