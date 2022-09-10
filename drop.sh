@@ -4,8 +4,10 @@ function drop {
 
 #path= pwd
 ls ./DBMS/
+
 read -p "What is the name of the database do you want to drop? " name
 cd ./DBMS
+
 while true
 do
 	if [ -d "$name" ]
@@ -16,7 +18,7 @@ do
 		while true
 		do
 			case $ans in
-				[yY]) rm -r ./DBMS/$name 
+				[yY]) rm -r ./$name 
 
 					break 2;;
 				[nN]) break 2 ;; #Return to main menu
@@ -29,7 +31,8 @@ do
 	fi
 done
 cd ..
-echo Please press Enter to continue.
+echo -e "\n--------------------Successfully Deleted------------------------"
+main_menu
 }
 
 
