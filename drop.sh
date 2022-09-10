@@ -16,7 +16,7 @@ do
 		while true
 		do
 			case $ans in
-				[yY]) rm -r ./DBMS/$name 
+				[yY]) rm -r $name 
 
 					break 2;;
 				[nN]) break 2 ;; #Return to main menu
