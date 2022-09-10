@@ -6,6 +6,7 @@ function connect {
 . ./ins.sh
 . ./deltable.sh
 . ./select.sh
+echo "Avaliable DataBases"
 ls ./DBMS/
 read -p "Enter the database name you want to connect to: " name
 
@@ -38,7 +39,6 @@ cd ../..
 }
 #####################################################################################################################################
 function droptable {
-  pwd
   while true ;do
   read -p "Enter Table Name:" tname
   if [ ! -f $tname ]
