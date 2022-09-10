@@ -50,8 +50,7 @@ function droptable {
 		echo "Really?"
 		continue;
   fi
-  rm $tName 
-  rm "${tName}-meta"
+  rm $tname "${tname}-meta" 2> /dev/null
   if [[ $? == 0 ]]
   then
     echo "Table Dropped Successfully"
