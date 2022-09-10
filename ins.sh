@@ -26,6 +26,16 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	fi
 	if [[ $coltyp == [iI] ]];then 
 		while ! [[  $input =~ ^[0-9]*$ ]]; do
+<<<<<<< HEAD:ins2.sh
+			echo "Invalid DataType "
+			echo -e "Please enter an integer ($colname) "
+ 			read input
+		done
+	elif [[ $coltyp == "s" ]];then
+		while ! [[ $input =~ ^[0-9]*$ ]]; do
+			echo "Invalid DataType"
+			echo -e "Please enter a string ($colname) "
+=======
 			echo "invalid DataType "
 			echo -e "Enter ($colname) which is an integer "
  			read input
@@ -46,12 +56,16 @@ for (( k = 1; k <=$colnum ; k++ )); do
 					echo "This value already exists"
 					continue 2
 				fi
-				#echo -e "enter ($colname)"
-			 	#read input
+				##echo -e "enter ($colname)"
+			 	##read input
 
+<<<<<<< HEAD:ins2.sh
+		#	done
+=======
 			done
 			break
 		#done
+		
 	fi
 	break
 	done
@@ -61,7 +75,7 @@ for (( k = 1; k <=$colnum ; k++ )); do
 
 	if [[ $k -eq $colnum ]]
 	then
-			row+="${input}"
+			row+=""${input}""
 	else
 			row+=${input}:
 	fi
