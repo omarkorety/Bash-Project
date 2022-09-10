@@ -2,8 +2,9 @@
 function insert {
 	. ../../connect.sh
 
-	row=()
-
+row=()
+echo "Avaliable Tables"
+echo `ls -I "*-meta"`
 read -p "Enter the table name: " tname
 if [ ! -f $tname ]
     then
@@ -83,7 +84,7 @@ do
 			cd ../..
 			connect
 		fi
-	done
+done
 			
 }
 
