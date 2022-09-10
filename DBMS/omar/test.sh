@@ -1,37 +1,35 @@
-arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' test))
-echo -e " choose from those columns\n${arr[@]}"
-len=${#arr[@]}
-read input
+#!/bin/bash
+#Drop table
+function drop { 
 
-if [[ $input -lt "len" ]];then
-	awk -F: -v col="$input"'{print $col}' test
+ls ./DBMS/
+read -p "What is the name of the table do you want to drop? " tname
+cd ./DBMS/$tname
+while true
+do
+	if [ -f "$tname" ]
+
+	then
+		
+		read -p "Are you sure you want to drop $5name?(y/n): " input
+		while true
+		do
+			case $ans in
+				[yY]) rm -r ./DBMS/$name 
+
+					break 2;;
+				[nN]) break 2 ;; #Return to main menu
+				*) read -p "Please enter a suitable answer(y/n): " ans
+					#return to the case again
+			esac
+		done
 	else
-    	echo -e "please enter num < ${#arr[@]}"
-    	read input
-
+		read -p "This database is not available, Please try again: " name
 	fi
-
-
-	==========================================
-	
-function bycol {
-	field=$(awk -F":" '{print $0}' tname|cut -d: -f1 |head -1)
-
-	echo "please Enter $field to print"
-	
+done
+cd ..
+echo Please press Enter to continue.
+}
 
 
 
-
-arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' test))
-echo -e " choose from those columns\n${arr[@]}"
-read input
-while ! [[  $input =~ ^[0-9]*$ ]]; do
-    echo"please enter num"
-    read input
-    done
-if [[ $input <= ${#arr[@]} ]];then
-awk -F:'{print $input}' $tname
-else
-    echo -e "please enter num <${#arr[@]}"
-    read input
