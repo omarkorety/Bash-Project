@@ -22,9 +22,8 @@ do
 			case $REPLY in
 				1) ctable;;			#Create
 				2) ls -I "*-meta";;			#List
-				3);;			#Drop
-				4) insert
-					continue;;			#Insert
+				3) droptable;;	#Drop
+				4) insert;;			#Insert
 				5) selct;;			#Select
 				6) deltable;;			#Delete
 				7) update;;			#Update
@@ -37,3 +36,29 @@ do
 done
 cd ../..
 }
+#####################################################################################################################################
+function droptable {
+  pwd
+  while true ;do
+  read -p "Enter Table Name:" tname
+  if [ ! -f $tname ]
+    then
+		echo "The table $tname doesn't exist"
+		continue;
+  fi
+  if [[ $tname == "" ]];then
+		echo "Really?"
+		continue;
+  fi
+  rm $tname "${tname}-meta" 
+  if [[ $? == 0 ]]
+  then
+    echo "Table Dropped Successfully"
+  else
+    echo "Error Dropping Table $tName"
+    continue;
+  fi
+  done
+  connect
+}
+

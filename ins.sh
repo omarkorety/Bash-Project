@@ -2,8 +2,9 @@
 function insert {
 	. ../../connect.sh
 
-	row=()
-
+row=()
+echo "Avaliable Tables"
+echo `ls -I "*-meta"`
 read -p "Enter the table name: " tname
 if [ ! -f $tname ]
     then
@@ -13,19 +14,11 @@ fi
 colnum=$(awk 'END{print NR}' "${tname}-meta")
 #arr=($(awk -F: '{ for(i = 1; i <= NF; i++) { if (NR==1) print $i; } }' $tname))					
 for (( k = 1; k <=$colnum ; k++ )); do
-<<<<<<< HEAD:ins2.sh
-	coltyp=$(awk -F: -v i="$k" '{if(NR==i) print $3}' "${tname}-meta")
-	colkey=$(awk -F: -v i="$k" '{if(NR==i) print $4}' "${tname}-meta") #to know if it primary or not
-	colname=$(awk -F: -v i="$k" '{if(NR==i) print $2}' "${tname}-meta")
-	while true ;do
-	echo  "Insert in ($colname) which its datatype is $coltyp" 
-=======
 	coltyp=`awk -F: -v i="$k" '{if(NR==i) print $3}' "${tname}-meta"`
 	colkey=`awk -F: -v i="$k" '{if(NR==i) print $4}' "${tname}-meta"` #to know if it primary or not
 	colname=`awk -F: -v i="$k" '{if(NR==i) print $2}' "${tname}-meta"`
 	while true ;do
 	echo  "Enter in ($colname) a/an $coltyp value:" 
->>>>>>> omar:ins.sh
 	read input
 	if [[ $input == "" ]];then
 		echo "Really?"
@@ -52,44 +45,29 @@ for (( k = 1; k <=$colnum ; k++ )); do
 		while ! [[ $input =~ ^[a-zA-Z]+$ ]]; do
 			echo "Invalid DataType "
 			echo -e "Enter ($colname) which is a string"
->>>>>>> omar:ins.sh
 			read input
 		done
 	fi
 	if [[ $colkey == "primary" ]]; then
 		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' $tname))
 		#while [[ true ]];do			
-<<<<<<< HEAD:ins2.sh
-		#	for item in "${primcol[@]}" ; do
-				if cut -d: -f1  $tname | tail +2 | grep '\<${input}\>' ;then
-				#	echo "this primar
-					echo This value already exists
-					continue
-				else
-					break ;
-=======
 			for item in "${primcol[@]}" ; do
 				if [[ $input == "$item" ]];then
 					echo "This value already exists"
 					continue 2
->>>>>>> omar:ins.sh
 				fi
-				#echo -e "enter ($colname)"
-			 	#read input
+				##echo -e "enter ($colname)"
+			 	##read input
 
 <<<<<<< HEAD:ins2.sh
 		#	done
 =======
 			done
 			break
->>>>>>> omar:ins.sh
 		#done
 		
 	fi
-<<<<<<< HEAD:ins2.sh
-=======
 	break
->>>>>>> omar:ins.sh
 	done
 #	echo -e "enter ($colname) "
 # 	read input
@@ -97,7 +75,7 @@ for (( k = 1; k <=$colnum ; k++ )); do
 
 	if [[ $k -eq $colnum ]]
 	then
-			row+="${input}"
+			row+=""${input}""
 	else
 			row+=${input}:
 	fi
@@ -120,7 +98,7 @@ do
 			cd ../..
 			connect
 		fi
-	done
+done
 			
 }
 
