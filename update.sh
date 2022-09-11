@@ -2,6 +2,7 @@
 #UPDATE
 
 function update {
+	. ../../connect.sh
     #cd DBMS/hamada
 echo "Avaliable Tables"
 echo `ls -I "*-meta"`
@@ -82,4 +83,5 @@ echo `ls -I "*-meta"`
         fi
     done
 echo Please press Enter to continue..
+#connect
 }           
