@@ -1,18 +1,22 @@
 #!/bin/bash
 function selct {
+. ./connect.sh
 #declare -a arr
 
-select choice in "Select all" "Select by column" "Select by row"
+select choice in "Select All" "Select By Column" "Select By Row" "Back To Table Menu"
 do
 case $REPLY in
 1)showall;;			
 2)bycols ;;
-3)byrow;;		
+3)byrow;;
+4)cd ../.. ;connect;;	
 *) echo "Invalid Entry"
 esac
 done
 }
 function showall {
+echo "Avaliable Tables"
+ls -I "*-meta" 
 read -p "Which Table You Want To Select From : " tname
 
 
