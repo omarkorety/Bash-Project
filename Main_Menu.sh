@@ -1,7 +1,7 @@
 #!/bin/bash
 . ./create.sh
 . ./drop.sh
-. ./connect.sh
+source connect.sh
 function main_menu {
 echo "                       ___________________                          " 
 echo "--------------------|||WELCOME TO OUR DBMS|||-----------------------"
