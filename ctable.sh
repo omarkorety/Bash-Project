@@ -85,6 +85,7 @@ function ctable {
 					fi
 				done
 			else
+				
 				if [[ $i -eq $col ]]
 				then
 				meta+="$i:${nm}:$typ"
@@ -92,6 +93,11 @@ function ctable {
 				meta+="$i:${nm}:$typ\n"
 				fi
 			
+			fi
+			if [ $nos -eq 0 ] && [ $i -eq $col ]
+			then
+					echo The table must have at least one primary column! Please try again!
+					ctable
 			fi
 			break
 		done
