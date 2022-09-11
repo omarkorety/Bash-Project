@@ -82,6 +82,6 @@ echo `ls -I "*-meta"`
             continue
         fi
     done
-echo Please press Enter to continue..
-#connect
+echo "Backing To Main Menu"
+main_menu
 }           

@@ -21,7 +21,7 @@ do
 
 		cd ./$name
 		echo "-------------------|||WELCOME TO "$name" DATABASE|||-----------------------"
-		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back TO Main Menu"	#Creating the menu
+		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" 	#Creating the menu
 		do
 			case $REPLY in
 				1) ctable;;			#Create

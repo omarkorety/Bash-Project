@@ -34,7 +34,7 @@ function deltable {
                 else
 					((row+=1))
 					awk -F: -v row="$row" -v name="$name" '{ if (NR != row) print > name }' $name
-					break 2
+					break 3
 				fi
 				done;;
 				*) echo "Enter 1 or 2"; continue;;
@@ -46,6 +46,7 @@ function deltable {
 
 		done
 
-echo Please press Enter to continue..
+echo "Backing To Main Menu"
+main_menu
 			
 }

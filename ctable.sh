@@ -121,7 +121,8 @@ function ctable {
 		else
 			#pwd
 			cd ../..
-			connect
+			echo "Backing To Main Menu"
+			main_menu
         fi
 done
 
