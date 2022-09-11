@@ -17,7 +17,7 @@ do
 	if [ -d "$name" ]
 	then
 		cd ./$name
-		echo "-------------------|||WELCOME TO TABLE MENU|||-----------------------"
+		echo "-------------------|||WELCOME TO "$name" DATABASE|||-----------------------"
 		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back TO Main Menu"	#Creating the menu
 		do
 			case $REPLY in
