@@ -61,9 +61,9 @@ for (( k = 1; k <=$colnum ; k++ )); do
 done
 #echo ${keys[@]}
 #echo ${#keys[@]}	
-echo $primcol
+#echo $primcol
 primtyp=$(awk -F: -v i="$primcol" '{if(NR==i)print $3}' test-meta)
-echo $primtyp
+#echo $primtyp
 
 num_of_rows=$(awk -F: 'END{print NR}' $tname)
 field=$(awk -F":" '{print $0}' $tname|cut -d: -f"$primcol" |head -1)
@@ -91,6 +91,8 @@ if [[ $primtyp == [iI] ]];then
 
 
 	grep -i -w $input $tname
+read -p "Do you to select more?(y/n) " ans
+
 while true
     do
 		if [[ $ans != [yYnN] ]]                     
@@ -101,7 +103,7 @@ while true
                then
 			byrow
 		else
-			cd ../..
+			#cd ../..
 			selct
         fi
 done
