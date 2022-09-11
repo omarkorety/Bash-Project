@@ -6,6 +6,7 @@ function connect {
 . ./ins.sh
 . ./deltable.sh
 . ./select.sh
+echo "Avaliable DataBases"
 ls ./DBMS/
 read -p "Enter the database name you want to connect to: " name
 
@@ -13,11 +14,11 @@ cd ./DBMS
 while true
 do
 
-
 	if [ -d "$name" ]
 	then
 		cd ./$name
-		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table"	#Creating the menu
+		echo "-------------------|||WELCOME TO TABLE MENU|||-----------------------"
+		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back TO Main Menu"	#Creating the menu
 		do
 			case $REPLY in
 				1) ctable;;			#Create
@@ -29,6 +30,7 @@ do
 				5) selct;;			#Select
 				6) deltable;;			#Delete
 				7) update;;			#Update
+				
 			esac
 			break 2
 		done

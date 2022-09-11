@@ -1,18 +1,22 @@
 #!/bin/bash
 function selct {
+. ./connect.sh
 #declare -a arr
 
-select choice in "Select all" "Select by column" "Select by row"
+select choice in "Select All" "Select By Column" "Select By Row" "Back To Table Menu"
 do
 case $REPLY in
 1)showall;;			
 2)bycols ;;
-3)byrow;;		
+3)byrow;;
+4)cd ../.. ;connect;;	
 *) echo "Invalid Entry"
 esac
 done
 }
 function showall {
+echo "Avaliable Tables"
+ls -I "*-meta" 
 read -p "Which Table You Want To Select From : " tname
 
 
@@ -61,9 +65,9 @@ for (( k = 1; k <=$colnum ; k++ )); do
 done
 #echo ${keys[@]}
 #echo ${#keys[@]}	
-echo $primcol
+#echo $primcol
 primtyp=$(awk -F: -v i="$primcol" '{if(NR==i)print $3}' test-meta)
-echo $primtyp
+#echo $primtyp
 
 num_of_rows=$(awk -F: 'END{print NR}' $tname)
 field=$(awk -F":" '{print $0}' $tname|cut -d: -f"$primcol" |head -1)
@@ -91,6 +95,8 @@ if [[ $primtyp == [iI] ]];then
 
 
 	grep -i -w $input $tname
+read -p "Do you to select more?(y/n) " ans
+
 while true
     do
 		if [[ $ans != [yYnN] ]]                     
@@ -101,7 +107,7 @@ while true
                then
 			byrow
 		else
-			cd ../..
+			#cd ../..
 			selct
         fi
 done
