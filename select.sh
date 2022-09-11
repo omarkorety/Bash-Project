@@ -1,15 +1,15 @@
 #!/bin/bash
 function selct {
-. ./connect.sh
+. ../../connect.sh
 #declare -a arr
 
-select choice in "Select All" "Select By Column" "Select By Row" "Back To Table Menu"
+select choice in "Select All" "Select By Column" "Select By Row" "Back To Connect Menu"
 do
 case $REPLY in
 1)showall;;			
 2)bycols ;;
 3)byrow;;
-4)cd ../.. ;connect;;	
+4) cd ../.. ;connect;;	
 *) echo "Invalid Entry"
 esac
 done
@@ -17,11 +17,11 @@ done
 function showall {
 echo "Avaliable Tables"
 ls -I "*-meta" 
-read -p "Which Table You Want To Select From : " tname
+read -p "Which Table Do You Want To Select From: " tname
 
 
 column -t -s ';' $tname
-read -p "List Another Table?(y/n) " ans
+read -p "Do you want to select more with the same option?(y/n) " ans
 while true
     do
 		if [[ $ans != [yYnN] ]]                     
@@ -32,7 +32,7 @@ while true
                then
 			showall
 		else
-			cd ../..
+			#cd ../..
 			selct
         fi
 done
@@ -42,9 +42,9 @@ function byrow {
 
 echo "Avaliable Tables"
 ls -I "*-meta" 
-read -p "Which table do u want to select from" tname
+read -p "Which table do u want to select from: " tname
 if [ ! -f $tname ];then
-	echo "no table like that"
+	echo "No table with that name"
     byrow
 fi
 if [[ $tname == "" ]];then
@@ -57,8 +57,8 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	colkey=($(awk -F: -v i="$k" '{if(NR==i) print $4}' "${tname}-meta")) #to know if it primary or not
 	#coltyp=$(awk -F: -v i="$k" '{if(NR==i) print $3}' "${tname}-meta")
     	if [[ $colkey == "primary" ]]; then
-		echo "the primary key in field num $k"
-		echo "$coltype"
+		#echo "The primary key is $field"
+		#echo "$coltype"
 		primcol=$k
 
 	fi
@@ -71,16 +71,18 @@ primtyp=$(awk -F: -v i="$primcol" '{if(NR==i)print $3}' test-meta)
 
 num_of_rows=$(awk -F: 'END{print NR}' $tname)
 field=$(awk -F":" '{print $0}' $tname|cut -d: -f"$primcol" |head -1)
-read  -p "please Enter $field to print" input
+echo "The primary key is $field"
+
+read  -p "Please enter a $field value to print: " input
 if [[ $input == "" ]];then
 		echo "Really?"
-        read  -p "please Enter $field to print" input
+        read  -p "Please enter a $field value to print: " input
 
 		
 fi
 if [[ $primtyp == [iI] ]];then 
 		while ! [[  $input =~ ^[0-9]*$ ]]; do
-			echo "invalid DataType "
+			echo "Invalid DataType "
 			echo -e "Enter ($field) which is an integer "
  			read input
 		done
@@ -95,7 +97,7 @@ if [[ $primtyp == [iI] ]];then
 
 
 	grep -i -w $input $tname
-read -p "Do you to select more?(y/n) " ans
+read -p "Do you want to select more with the same option?(y/n) " ans
 
 while true
     do
@@ -119,7 +121,7 @@ function bycols {
 #!/bin/bash
 echo "Avaliable Tables"
 echo `ls -I "*-meta"`
-read -p "Which Table You Want To Select From :" tname
+read -p "Which Table Do You Want To Select From: " tname
 if [[ $tname == "" ]];then
 		echo "Really?"
         bycols
@@ -127,17 +129,17 @@ if [[ $tname == "" ]];then
 fi
 
 if [ ! -f $tname ];then
-	echo "no table like that"
+	echo "No table like that"
     bycols
 fi
 echo "Avaliable Columns"
 echo `awk -F: '{print $0}' $tname | head -1`
 colnum_num=$(awk 'END{print NR}' "${tname}-meta")
 while  true ;do
-	read -p  "Please Enter the Coulmn You Want:" input
+	read -p  "Please Enter the Column Number You Want: " input
 	if  ! [[  $input =~ ^[0-9]*$ ]]; then
 		echo "ple "
-		echo -e "Enter the Coulmn Number which is an integer "
+		echo -e "Enter the Column Number which is an integer: "
  		continue;
 	fi
 	if [[ $input > $colnum_num ]];then
@@ -146,7 +148,12 @@ while  true ;do
 		awk -F: -v i="$input" '{print $i}' $tname
 		break;
 	fi
+done
+read -p "Do you want to select more with the same option?(y/n) " ans
 
+while true
+    do
+        
 	if [[ $ans != [yYnN] ]]                     
        	then
             read -p "Please enter either y or n " ans
@@ -155,9 +162,10 @@ while  true ;do
             then
 			bycols
 		else
-			cd ../..
+			#cd ../..
 			selct
     fi
+
 
 done
 }

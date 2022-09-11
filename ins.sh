@@ -6,7 +6,7 @@ row=()
 echo "Avaliable Tables"
 echo `ls -I "*-meta"`
 read -p "Enter the table name: " tname
-if [ ! -f $tname ]
+if [[ ! -f $tname ]] || [[ $tname == "" ]]
     then
 		echo "The table $tname doesn't exist"
 		insert
@@ -20,18 +20,18 @@ for (( k = 1; k <=$colnum ; k++ )); do
 	while true ;do
 	echo  "Enter in ($colname) a/an $coltyp value:" 
 	read input
-	if [[ $input == "" ]];then
-		echo "Really?"
-		continue
-	fi
+#	if [[ $input == "" ]];then
+	#	echo "Really?"
+	#	continue
+#	fi
 	if [[ $coltyp == [iI] ]];then 
-		while ! [[  $input =~ ^[0-9]*$ ]]; do
+		while ! [[  $input =~ ^[0-9]*$ ]] || [[ $input == "" ]]; do
 			echo "Invalid DataType "
 			echo -e "Please enter an integer ($colname) "
  			read input
 		done
 	elif [[ $coltyp == [sS] ]];then
-		while ! [[ $input =~ ^[a-zA-Z]*$ ]]; do
+		while ! [[ $input =~ ^[a-zA-Z]*$ ]] || [[ $input == "" ]]; do
 			echo "Invalid DataType"
 			echo -e "Please enter a string ($colname) "
 			#echo "invalid DataType "

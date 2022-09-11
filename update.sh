@@ -3,6 +3,8 @@
 
 function update {
     #cd DBMS/hamada
+echo "Avaliable Tables"
+echo `ls -I "*-meta"`
 	while true
 	do
 		read -p "Enter the table name: " name

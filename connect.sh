@@ -27,7 +27,8 @@ do
 				continue;;			#List
 				3) droptable;;	#Drop
 				4) insert;;			#Insert
-				5) selct;;			#Select
+				5) selct;;
+				#continue;;			#Select
 				6) deltable;;			#Delete
 				7) update;;			#Update
 				
