@@ -4,7 +4,7 @@
 function deltable {
 	while true
         do
-                read -p "Enter the table name you want to delete from: " name
+                read -p "Enter the table name you want to delete from: " name 	#
                 if [ -f "$name" ]
                 then
 				select choice in "Delete all" "Delete a row"
@@ -34,7 +34,7 @@ function deltable {
                 else
 					((row+=1))
 					awk -F: -v row="$row" -v name="$name" '{ if (NR != row) print > name }' $name
-					break 2
+					break 3
 				fi
 				done;;
 				*) echo "Enter 1 or 2"; continue;;
