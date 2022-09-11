@@ -2,7 +2,7 @@
 function selct {
 #declare -a arr
 
-select choice in "selet all" "select by colum" "select by row"
+select choice in "Select all" "Select by column" "Select by row"
 do
 case $REPLY in
 1)showall;;			
@@ -38,7 +38,7 @@ function byrow {
 
 echo "Avaliable Tables"
 ls -I "*-meta" 
-read -p "whitch table u want to select from" tname
+read -p "Which table do u want to select from" tname
 if [ ! -f $tname ];then
 	echo "no table like that"
     byrow

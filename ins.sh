@@ -30,21 +30,23 @@ for (( k = 1; k <=$colnum ; k++ )); do
 			echo -e "Please enter an integer ($colname) "
  			read input
 		done
-	elif [[ $coltyp == "s" ]];then
-		while ! [[ $input =~ ^[0-9]*$ ]]; do
+	elif [[ $coltyp == [sS] ]];then
+		while ! [[ $input =~ ^[a-zA-Z]*$ ]]; do
 			echo "Invalid DataType"
 			echo -e "Please enter a string ($colname) "
-			echo "invalid DataType "
-			echo -e "Enter ($colname) which is an integer "
+			#echo "invalid DataType "
+		#	echo -e "Enter ($colname) which is an integer "
  			read input
 		done
 	
-	else 
-		while ! [[ $input =~ ^[a-zA-Z]+$ ]]; do
-			echo "Invalid DataType "
-			echo -e "Enter ($colname) which is a string"
-			read input
-		done
+	else
+	        echo ERROR!
+		continue	       
+#		while ! [[ $input =~ ^[a-zA-Z]+$ ]]; do
+#			echo "Invalid DataType "
+#			echo -e "Enter ($colname) which is a string"
+#			read input
+#		done
 	fi
 	if [[ $colkey == "primary" ]]; then
 		primcol=($(awk -F: -v i="$k" '{ if (NR > 1) print $i}' $tname))

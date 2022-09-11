@@ -1,7 +1,7 @@
 #!/bin/bash
 #UPDATE
 
-#function update {
+function update {
     #cd DBMS/hamada
 	while true
 	do
@@ -80,4 +80,4 @@
         fi
     done
 echo Please press Enter to continue..
-#}            
+}           

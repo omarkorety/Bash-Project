@@ -7,7 +7,7 @@ echo "                       ___________________                          "
 echo "--------------------|||WELCOME TO OUR DBMS|||-----------------------"
 echo "                                                 " 
 
-echo -e "------------|||Please slect Your choice carefully|||-----------\n"
+echo -e "----------------|||Please select your choice!|||---------------\n"
 select choice in "Create Database" "List Database" "Connect To Database" "Drop Database" "Exit"
 	do
 	case $REPLY in

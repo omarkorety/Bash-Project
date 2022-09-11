@@ -6,7 +6,6 @@ function connect {
 . ./ins.sh
 . ./deltable.sh
 . ./select.sh
-echo "Avaliable DataBases"
 ls ./DBMS/
 read -p "Enter the database name you want to connect to: " name
 
@@ -22,7 +21,9 @@ do
 		do
 			case $REPLY in
 				1) ctable;;			#Create
-				2) ls -I "*-meta";;			#List
+				2) ls -I "*-meta"
+				echo "Please press Enter to continue.."
+				continue;;			#List
 				3) droptable;;	#Drop
 				4) insert;;			#Insert
 				5) selct;;			#Select
@@ -39,6 +40,7 @@ cd ../..
 }
 #####################################################################################################################################
 function droptable {
+  pwd
   while true ;do
   read -p "Enter Table Name:" tname
   if [ ! -f $tname ]
