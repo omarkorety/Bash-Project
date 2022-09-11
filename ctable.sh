@@ -1,6 +1,8 @@
 #!/bin/bash
 #I am ctable
 function ctable {
+	. ../../connect.sh
+
 	val=()
 	meta=()
 	typeset -i nos=0
@@ -105,7 +107,25 @@ function ctable {
 	echo $val >> $name
 	echo -e $meta >> "${name}-meta"
 	echo A table with the name $name is created successfully!
-	echo Please press enter to continue..
+	#echo Please press enter to continue..
+	read -p "Create  Another Table?(y/n) " ans
+	while true
+    do
+		if [[ $ans != [yYnN] ]]                     
+	       	then
+                read -p "Please Enter Either y or n " ans
+
+               elif [[ $ans = [yY] ]]
+               then
+			ctable
+		else
+			#pwd
+			cd ../..
+			echo "Backing To Main Menu"
+			main_menu
+        fi
+done
+
 
 
 }

@@ -46,6 +46,7 @@ function deltable {
 
 		done
 
-echo Please press Enter to continue..
+echo "Backing To Main Menu"
+main_menu
 			
 }

@@ -6,6 +6,8 @@ function connect {
 . ./ins.sh
 . ./deltable.sh
 . ./select.sh
+echo "-------------------|||WELCOME TO Connect Menu|||-----------------------"
+
 echo "Avaliable DataBases"
 ls ./DBMS/
 read -p "Enter the database name you want to connect to: " name
@@ -16,15 +18,16 @@ do
 
 	if [ -d "$name" ]
 	then
+
 		cd ./$name
 		echo "-------------------|||WELCOME TO "$name" DATABASE|||-----------------------"
-		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" "Back TO Main Menu"	#Creating the menu
+		select choice in "Create Table" "List Tables" "Drop Table" "Insert Into Table" "Select From Table" "Delete From Table" "Update Table" 	#Creating the menu
 		do
 			case $REPLY in
 				1) ctable;;			#Create
-				2) ls -I "*-meta"
-				echo "Please press Enter to continue.."
-				continue;;			#List
+				2) ls -I "*-meta";cd ../..;connect;;
+				#echo "Please press Enter to continue.."
+				#continue;;			#List
 				3) droptable;;	#Drop
 				4) insert;;			#Insert
 				5) selct;;
@@ -43,7 +46,7 @@ cd ../..
 }
 #####################################################################################################################################
 function droptable {
-  pwd
+  
   while true ;do
   read -p "Enter Table Name:" tname
   if [ ! -f $tname ]
